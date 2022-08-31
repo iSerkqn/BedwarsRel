@@ -489,27 +489,6 @@ public class PlayerListener extends BaseListener {
     die.setCancelled(true);
   }
 
-  @EventHandler(priority = EventPriority.HIGHEST)
-  public void onFly(PlayerToggleFlightEvent tfe) {
-    Player p = tfe.getPlayer();
-
-    Game g = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(p);
-    if (g == null) {
-      return;
-    }
-
-    if (g.getState() == GameState.STOPPED) {
-      return;
-    }
-
-    if (g.getState() == GameState.RUNNING && g.isSpectator(p)) {
-      tfe.setCancelled(false);
-      return;
-    }
-
-    tfe.setCancelled(true);
-  }
-
   @EventHandler(priority = EventPriority.HIGH)
   public void onHunger(FoodLevelChangeEvent flce) {
     if (!(flce.getEntity() instanceof Player)) {
